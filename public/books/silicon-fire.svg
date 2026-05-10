@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="920" viewBox="0 0 700 920">
+  <rect width="700" height="920" fill="#ecebea"/><g stroke="#b98982" stroke-width="1" opacity=".65"><path d="M350 24 168 760h364Z" fill="none"/><g><path d="M199 104h302"/><path d="M190 137h320"/><path d="M181 170h338"/><path d="M172 203h356"/><path d="M163 236h374"/><path d="M154 269h392"/><path d="M145 302h410"/><path d="M136 335h428"/><path d="M127 368h446"/><path d="M118 401h464"/><path d="M109 434h482"/><path d="M100 467h500"/><path d="M91 500h518"/><path d="M82 533h536"/><path d="M73 566h554"/><path d="M64 599h572"/><path d="M55 632h590"/></g></g>
+  <path d="M340 220c67 114 137 247 128 394-5 84-46 156-119 207 17-112-18-202-77-271-33 60-75 119-122 176-5-87 19-171 56-248 38-78 84-156 134-258Z" fill="#965446" opacity=".88"/>
+  <text x="520" y="90" writing-mode="tb" fill="#333" font-size="66" font-weight="900" font-family="sans-serif">硅谷之火</text>
+  <text x="462" y="96" writing-mode="tb" fill="#333" font-size="30" font-family="serif">个人计算机的诞生与衰落（第3版）</text>
+  <text x="138" y="255" writing-mode="tb" fill="#b88963" font-size="54" font-weight="800" font-family="sans-serif" opacity=".75">VALLEY OF FIRE</text>
+  <text x="360" y="705" fill="#333" font-size="30" font-family="serif">The Birth and Death of the</text>
+  <text x="438" y="741" fill="#333" font-size="30" font-family="serif">Personal Computer</text>
+  <text x="438" y="777" fill="#333" font-size="30" font-family="serif">(Third Edition)</text>
+  <text x="70" y="870" fill="#111" font-size="30" font-weight="800" font-family="sans-serif">中国工信出版集团　人民邮电出版社</text>
+</svg>

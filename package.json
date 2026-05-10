@@ -17,7 +17,8 @@
     "react-dom": "latest",
     "tailwindcss": "latest",
     "@tailwindcss/vite": "latest",
-    "lucide-react": "latest"
+    "lucide-react": "latest",
+    "framer-motion": "latest"
   },
   "devDependencies": {
     "eslint": "latest",
