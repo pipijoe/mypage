@@ -21,9 +21,9 @@ import './styles.css';
 const tags = ['羽毛球L1', '奶爸', 'vibe coding', '了解自己', 'INTJ', '对抗内耗', '了解心理学'];
 
 const thoughts = [
-  '从后台走到前台，是一次被迫但珍贵的升级：更多交流带来正反馈，也带来负反馈。',
-  '减少负反馈对情绪的影响，是我当前的必修课；我想训练的是稳定，而不是迟钝。',
-  '最近一年在北京出差和工作的经历，让我更清楚自己适合什么、在意什么、要守住什么。',
+  '人生前段时高考和工作，后段的主题就是把高考时的精神拿来搏自由。',
+  '一段工作经历让我明白，一个人如果既忙前又忙后，多半一个都忙不好。如有必要，找合适的人合作。',
+  '建立信任是起步的基石。',
 ];
 
 const books = [
@@ -36,7 +36,7 @@ const books = [
   {
     title: '网：阿加西自传',
     note: '从网球冠军的坦白叙事里看见热爱、厌倦、重建与自我和解。',
-    image: '/books/open-agassi.svg',
+    image: '/books/img.png',
     source: '自传',
   },
   {
@@ -63,7 +63,6 @@ const statusCards = [
 ];
 
 const boardCharacters = [
-  { name: '反馈伙伴', mood: '举起雷达耳机', accent: 'sky' },
   { name: '自我观察员', mood: '抱着发光日记', accent: 'amber' },
   { name: '内耗清道夫', mood: '背着能量背包', accent: 'violet' },
 ];
