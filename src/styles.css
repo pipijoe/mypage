@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color-scheme: dark;
+  background: #05070d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #05070d;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(125, 211, 252, 0.55) 0 1px, transparent 1.5px);
+  background-position: 0 0, 40px 60px;
+  background-size: 140px 140px, 220px 220px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+  animation: drift 26s linear infinite;
+}
+
+.parallax-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.parallax-layer.far {
+  transform: translate3d(0, calc(var(--far-y) * 1px), 0) scale(0.96);
+}
+
+.parallax-layer.mid {
+  transform: translate3d(0, calc(var(--mid-y) * 1px), 0) scale(0.985);
+}
+
+.parallax-layer.near {
+  transform: translate3d(0, calc(var(--near-y) * 1px), 0) scale(1.03);
+}
+
+.paw-badge {
+  position: absolute;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 999px;
+  background: rgb(15 23 42 / 0.58);
+  padding: 0.75rem 1rem;
+  color: rgb(224 242 254 / 0.72);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  box-shadow: 0 20px 70px rgb(14 165 233 / 0.13);
+  backdrop-filter: blur(18px);
+}
+
+.hero-card {
+  transform: perspective(1100px) translate3d(0, calc(var(--hero-depth) * 1px), 0) rotateX(calc(var(--scroll-progress) * 11deg)) scale(var(--hero-scale));
+  transform-origin: center top;
+  will-change: transform;
+}
+
+.content-section {
+  margin-inline: auto;
+  max-width: 80rem;
+  padding: 5rem 1.5rem;
+}
+
+.glass-panel {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 2.5rem;
+  background: linear-gradient(135deg, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.025));
+  box-shadow: 0 30px 90px rgb(2 6 23 / 0.5);
+  backdrop-filter: blur(24px);
+}
+
+.horizontal-depth {
+  display: grid;
+  gap: 1.25rem;
+  perspective: 1200px;
+}
+
+.thought-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  min-height: 9rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 2rem;
+  background: linear-gradient(90deg, rgb(14 165 233 / 0.18), rgb(255 255 255 / 0.04));
+  padding: 1.5rem;
+  transform: translateZ(calc((2 - var(--i)) * 36px)) translateX(calc(var(--i) * 2rem));
+  transition: transform 500ms ease, background 500ms ease;
+}
+
+.thought-card:hover {
+  background: linear-gradient(90deg, rgb(14 165 233 / 0.26), rgb(250 204 21 / 0.08));
+  transform: translateZ(110px) translateX(0) rotateY(-4deg);
+}
+
+.thought-card span {
+  color: rgb(125 211 252);
+  font-weight: 900;
+  letter-spacing: 0.2em;
+}
+
+.thought-card p {
+  color: rgb(226 232 240);
+  font-size: clamp(1.25rem, 3vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.book-card,
+.work-card {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 2rem;
+  background: rgb(255 255 255 / 0.055);
+  padding: 1.5rem;
+  backdrop-filter: blur(20px);
+  transition: transform 450ms ease, border-color 450ms ease, background 450ms ease;
+}
+
+.book-card:hover,
+.work-card:hover {
+  border-color: rgb(125 211 252 / 0.45);
+  background: rgb(255 255 255 / 0.09);
+  transform: translateY(-0.65rem) scale(1.02);
+}
+
+.book-card h3,
+.work-card h3 {
+  margin-top: 1.5rem;
+  color: white;
+  font-size: 1.55rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.book-card p,
+.work-card p {
+  margin-top: 0.8rem;
+  color: rgb(148 163 184);
+  line-height: 1.75;
+}
+
+.work-stage {
+  display: grid;
+  gap: 1.5rem;
+  perspective: 1000px;
+}
+
+.work-card {
+  min-height: 13rem;
+  transform: translateX(calc(var(--depth) * 2.4rem)) translateZ(calc((2 - var(--depth)) * 48px));
+}
+
+.work-card span {
+  display: inline-flex;
+  border-radius: 999px;
+  background: rgb(125 211 252 / 0.13);
+  padding: 0.35rem 0.75rem;
+  color: rgb(186 230 253);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-140px, 140px, 0); }
+}
+
+@media (min-width: 768px) {
+  .horizontal-depth {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .thought-card {
+    grid-template-columns: 1fr;
+    align-content: space-between;
+  }
+
+  .work-stage {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .hero-card,
+  .parallax-layer,
+  .thought-card,
+  .work-card {
+    transform: none !important;
+  }
+}
