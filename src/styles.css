@@ -175,6 +175,79 @@ body {
   letter-spacing: 0.18em;
 }
 
+
+.book-cover-wrap {
+  position: relative;
+  display: grid;
+  min-height: 18rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at 50% 20%, rgb(250 204 21 / 0.16), transparent 34%),
+    linear-gradient(145deg, rgb(15 23 42 / 0.9), rgb(2 6 23 / 0.94));
+}
+
+.book-cover-wrap::before {
+  position: absolute;
+  inset: 12%;
+  border-radius: 999px;
+  background: rgb(56 189 248 / 0.16);
+  filter: blur(42px);
+  content: "";
+}
+
+.book-cover-wrap span {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 999px;
+  background: rgb(2 6 23 / 0.58);
+  padding: 0.28rem 0.65rem;
+  color: rgb(226 232 240 / 0.72);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(14px);
+}
+
+.book-cover {
+  position: relative;
+  z-index: 1;
+  max-height: 15.5rem;
+  max-width: 72%;
+  border-radius: 0.6rem;
+  object-fit: cover;
+  box-shadow: 0 24px 60px rgb(0 0 0 / 0.45);
+  transform: rotate(-2deg);
+  transition: transform 450ms ease, box-shadow 450ms ease;
+}
+
+.book-card:hover .book-cover {
+  box-shadow: 0 32px 75px rgb(14 165 233 / 0.2);
+  transform: rotate(0deg) scale(1.045);
+}
+
+.work-link {
+  margin-top: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  background: rgb(224 242 254);
+  padding: 0.75rem 1rem;
+  color: rgb(15 23 42);
+  font-weight: 900;
+  transition: transform 300ms ease, background 300ms ease;
+}
+
+.work-link:hover {
+  background: white;
+  transform: translateY(-0.2rem);
+}
+
 @keyframes drift {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(-140px, 140px, 0); }

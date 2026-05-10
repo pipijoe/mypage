@@ -3,7 +3,10 @@ import { createRoot } from 'react-dom/client';
 import {
   ArrowDown,
   BookOpen,
+  Brain,
+  Cloud,
   Compass,
+  ExternalLink,
   MapPin,
   MessageCircle,
   MoonStar,
@@ -14,28 +17,48 @@ import {
 } from 'lucide-react';
 import './styles.css';
 
+const tags = ['羽毛球L1', '奶爸', 'vibe coding', '了解自己', 'INTJ', '对抗内耗', '了解心理学'];
+
 const thoughts = [
-  '做产品像带队巡逻：先看见问题，再把路照亮。',
-  '每天保留一小段时间，给女儿、书、代码和自己。',
-  '好的个人首页不是简历墙，而是一条正在发生的生活轨道。',
+  '从后台走到前台，是一次被迫但珍贵的升级：更多交流带来正反馈，也带来负反馈。',
+  '减少负反馈对情绪的影响，是我当前的必修课；我想训练的是稳定，而不是迟钝。',
+  '最近一年在北京出差和工作的经历，让我更清楚自己适合什么、在意什么、要守住什么。',
 ];
 
 const books = [
-  { title: '纳瓦尔宝典', note: '关于复利、判断力与长期主义。' },
-  { title: '原则', note: '把模糊经验沉淀成可复用系统。' },
-  { title: '置身事内', note: '理解城市、产业和真实世界如何运转。' },
+  {
+    title: '被讨厌的勇气',
+    note: '借阿德勒心理学练习课题分离，把他人的评价还给他人，把自己的路走稳。',
+    image: 'https://books.google.com/books/content?id=F8r60AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    source: 'Google Books',
+  },
+  {
+    title: '全情投入',
+    note: '提醒我把精力投向真正重要的选择，建立可持续的能量管理和生活秩序。',
+    image: 'https://books.google.com/books/content?id=raBW0AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    source: 'Google Books',
+  },
+  {
+    title: '硅谷之火',
+    note: '回看个人计算机革命的冒险精神，也提醒程序员不要忘记技术背后的人。',
+    image: 'https://books.google.com/books/content?id=1stYEQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    source: 'Google Books',
+  },
 ];
 
 const works = [
-  { name: '家庭任务站', tag: 'Life OS', desc: '把家庭计划、阅读、亲子活动做成轻量看板。' },
-  { name: '想法雷达', tag: 'Writing', desc: '收集碎片灵感，沉淀成公开文章与产品构想。' },
-  { name: '队长工具箱', tag: 'Code', desc: '围绕效率、自动化与创作搭建的小工具合集。' },
+  {
+    name: '一个云笔记',
+    tag: 'Cloud Notes',
+    desc: '把碎片想法、阅读记录和日常工作沉淀到一个可持续维护的个人知识空间。',
+    href: 'http://8.138.150.215/',
+  },
 ];
 
 const statusCards = [
-  { icon: MapPin, label: '当前所在地', value: '中国 · 一座正在变亮的城市', hint: '在家、书店、咖啡馆与路上切换坐标。' },
-  { icon: Rocket, label: '我在做什么', value: '搭建个人知识与作品基地', hint: '把想法、作品和生活持续公开化。' },
-  { icon: Waves, label: '近期节奏', value: '陪伴女儿 + 写作 + 前端实验', hint: '用稳定的小步快跑，穿过复杂日常。' },
+  { icon: MapPin, label: '当前所在地', value: '北京', hint: '在工作、出差、阅读和自我观察之间切换坐标。' },
+  { icon: Rocket, label: '我在做什么', value: '建设个人知识与作品基地', hint: '用 vibe coding 把想法变成页面、工具和可访问的作品。' },
+  { icon: Waves, label: '近期课题', value: '降低负反馈的情绪噪音', hint: '保留反馈里的信息，减少评价对自我状态的消耗。' },
 ];
 
 function useScrollProgress() {
@@ -108,26 +131,33 @@ function App() {
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 rounded-full border border-sky-300/20 bg-sky-300/10 px-4 py-2 text-sm text-sky-100 shadow-lg shadow-sky-950/40">
-              <Sparkles size={16} /> 女儿命名 · 来自《汪汪队》的勇敢暗号
+              <Sparkles size={16} /> 女儿命名 · 北京坐标 · 心理学练习中
             </div>
             <div className="space-y-5">
-              <p className="text-sm uppercase tracking-[0.55em] text-sky-200/70">Captain Ryder</p>
+              <p className="text-sm uppercase tracking-[0.55em] text-sky-200/70">Captain Ryder&apos;s Adventure Bay</p>
               <h1 className="max-w-4xl text-6xl font-black leading-[0.95] tracking-[-0.08em] text-white sm:text-7xl lg:text-8xl">
                 莱德队长的
                 <span className="block bg-gradient-to-r from-sky-200 via-white to-yellow-200 bg-clip-text text-transparent">
-                  深夜巡航站
+                  冒险湾
                 </span>
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-                这里记录一个父亲、创作者和产品人的轨迹：我如何观察世界、读书、写下想法、完成作品，也如何在日常里保持一点队长式的可靠。
+                这里记录一个程序员、奶爸和 INTJ 的自我探索：读书、vibe coding、云笔记作品，以及我如何在更多交流里接住反馈、减少内耗。
               </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              {tags.map((tag) => (
+                <span key={tag} className="rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm text-slate-200 backdrop-blur">
+                  {tag}
+                </span>
+              ))}
             </div>
             <div className="flex flex-wrap gap-4">
               <a href="#介绍" className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-sky-500/20">
-                进入基地 <ArrowDown className="transition group-hover:translate-y-1" size={18} />
+                进入冒险湾 <ArrowDown className="transition group-hover:translate-y-1" size={18} />
               </a>
               <a href="#作品" className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white/10">
-                查看作品 <Orbit size={18} />
+                查看云笔记 <Orbit size={18} />
               </a>
             </div>
           </div>
@@ -136,7 +166,7 @@ function App() {
             <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-gradient-to-br from-sky-500/20 via-transparent to-yellow-300/20 blur-2xl" />
             <div className="h-full rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.25),transparent_32%),linear-gradient(180deg,rgba(15,23,42,0.78),rgba(2,6,23,0.95))] p-6">
               <div className="flex items-center justify-between text-slate-300">
-                <span className="rounded-full bg-white/10 px-3 py-1 text-xs">MISSION BOARD</span>
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs">ADVENTURE BOARD</span>
                 <MoonStar size={22} />
               </div>
               <div className="mt-16 grid place-items-center">
@@ -146,7 +176,7 @@ function App() {
                 </div>
               </div>
               <div className="mt-14 space-y-4">
-                {['可靠', '好奇', '长期主义'].map((item, index) => (
+                {['接住反馈', '理解自己', '对抗内耗'].map((item, index) => (
                   <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] p-3" style={{ transform: `translateX(${index * 14}px)` }}>
                     <span className="h-2.5 w-2.5 rounded-full bg-sky-300 shadow-[0_0_16px_rgba(125,211,252,0.8)]" />
                     <span>{item}</span>
@@ -163,10 +193,10 @@ function App() {
         <div className="glass-panel grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-5 text-lg leading-9 text-slate-300">
             <p>
-              我喜欢把复杂问题拆成可执行任务，也喜欢把生活里温柔的部分保存下来。“莱德队长”不是一个严肃头衔，而是女儿送给我的身份徽章：遇到问题，先集合，再出发。
+              “莱德队长的冒险湾”是我给自己的公开基地：一个在北京工作和出差的程序员，正在学习从后台走到前台，和更多人协作、表达、交换反馈。
             </p>
             <p>
-              这个页面会持续更新我的想法、阅读、作品和当下状态。它既是个人首页，也是一个可被时间打磨的公开基地。
+              我关心心理学、了解自己和对抗内耗。最近最重要的练习，是把负反馈里的有效信息留下，把对情绪的无谓消耗降下来。
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
@@ -183,7 +213,7 @@ function App() {
       </section>
 
       <section id="想法" className="content-section relative z-10">
-        <SectionHeader kicker="Signals" title="我发布的想法" icon={Sparkles} />
+        <SectionHeader kicker="Signals" title="最近的感悟" icon={Brain} />
         <div className="horizontal-depth">
           {thoughts.map((thought, index) => (
             <article key={thought} className="thought-card" style={{ '--i': index }}>
@@ -195,12 +225,15 @@ function App() {
       </section>
 
       <section id="书单" className="content-section relative z-10">
-        <SectionHeader kicker="Books" title="我看的书及推荐" icon={BookOpen} />
+        <SectionHeader kicker="Books" title="我正在读的书" icon={BookOpen} />
         <div className="grid gap-5 md:grid-cols-3">
           {books.map((book) => (
             <article key={book.title} className="book-card">
-              <BookOpen className="text-yellow-100" size={30} />
-              <h3>{book.title}</h3>
+              <div className="book-cover-wrap">
+                <img className="book-cover" src={book.image} alt={`《${book.title}》封面`} loading="lazy" />
+                <span>{book.source}</span>
+              </div>
+              <h3>《{book.title}》</h3>
               <p>{book.note}</p>
             </article>
           ))}
@@ -215,6 +248,9 @@ function App() {
               <span>{work.tag}</span>
               <h3>{work.name}</h3>
               <p>{work.desc}</p>
+              <a href={work.href} target="_blank" rel="noreferrer" className="work-link">
+                打开作品 <ExternalLink size={17} />
+              </a>
             </article>
           ))}
         </div>
@@ -225,14 +261,14 @@ function App() {
           <p className="text-sm uppercase tracking-[0.45em] text-sky-200/70">Now / Location / Contact</p>
           <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_0.8fr]">
             <h2 className="text-4xl font-black tracking-[-0.05em] text-white sm:text-6xl">
-              我当前在路上，
+              我在北京冒险湾，
               <span className="block text-sky-100">也在把路写下来。</span>
             </h2>
             <div className="space-y-5 text-slate-300">
-              <p>当前所在地：一座适合生活、阅读和构建产品的城市。</p>
-              <p>正在做：把“莱德队长”变成长期更新的个人品牌入口。</p>
-              <a className="inline-flex items-center gap-2 rounded-full bg-sky-200 px-5 py-3 font-bold text-slate-950 transition hover:-translate-y-1 hover:bg-white" href="mailto:hello@example.com">
-                和队长联系 <MessageCircle size={18} />
+              <p>当前所在地：北京。</p>
+              <p>正在做：维护“莱德队长的冒险湾”，把阅读、云笔记、代码和自我觉察连接起来。</p>
+              <a className="inline-flex items-center gap-2 rounded-full bg-sky-200 px-5 py-3 font-bold text-slate-950 transition hover:-translate-y-1 hover:bg-white" href="http://8.138.150.215/" target="_blank" rel="noreferrer">
+                访问我的云笔记 <Cloud size={18} />
               </a>
             </div>
           </div>
