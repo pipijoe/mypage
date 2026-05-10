@@ -6,7 +6,6 @@ import {
   BookOpen,
   Brain,
   Cloud,
-  CheckCircle2,
   Compass,
   ExternalLink,
   MapPin,
@@ -32,19 +31,19 @@ const books = [
     title: '被讨厌的勇气',
     note: '借阿德勒心理学练习课题分离，把他人的评价还给他人，把自己的路走稳。',
     image: '/books/courage.svg',
-    source: '用户提供',
+    source: '心理学',
   },
   {
-    title: '全情投入',
-    note: '提醒我把精力投向真正重要的选择，建立可持续的能量管理和生活秩序。',
-    image: '/books/all-in.svg',
-    source: '用户提供',
+    title: '网：阿加西自传',
+    note: '从网球冠军的坦白叙事里看见热爱、厌倦、重建与自我和解。',
+    image: '/books/open-agassi.svg',
+    source: '自传',
   },
   {
     title: '硅谷之火',
     note: '回看个人计算机革命的冒险精神，也提醒程序员不要忘记技术背后的人。',
     image: '/books/silicon-fire.svg',
-    source: '用户提供',
+    source: '科技史',
   },
 ];
 
@@ -63,7 +62,11 @@ const statusCards = [
   { icon: Waves, label: '近期课题', value: '降低负反馈的情绪噪音', hint: '保留反馈里的信息，减少评价对自我状态的消耗。' },
 ];
 
-const boardItems = ['接住反馈', '理解自己', '对抗内耗'];
+const boardCharacters = [
+  { name: '反馈伙伴', mood: '举起雷达耳机', accent: 'sky' },
+  { name: '自我观察员', mood: '抱着发光日记', accent: 'amber' },
+  { name: '内耗清道夫', mood: '背着能量背包', accent: 'violet' },
+];
 
 const checkpoints = [
   { label: '今日航线', value: '读书 · 编码 · 复盘' },
@@ -80,13 +83,13 @@ function App() {
   const farY = useTransform(smoothProgress, [0, 1], [0, -145]);
   const midY = useTransform(smoothProgress, [0, 1], [0, -260]);
   const nearY = useTransform(smoothProgress, [0, 1], [0, -420]);
-  const bgY = useTransform(smoothProgress, [0, 1], [0, 220]);
+  const bgY = useTransform(smoothProgress, [0, 1], [-120, 120]);
   const progressScale = useTransform(smoothProgress, [0, 1], [0.04, 1]);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#05070d] text-slate-100 selection:bg-sky-300 selection:text-slate-950">
-      <motion.div className="fixed inset-0 pointer-events-none opacity-80" style={{ y: bgY }}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(59,130,246,0.26),transparent_26%),radial-gradient(circle_at_82%_24%,rgba(250,204,21,0.12),transparent_25%),linear-gradient(135deg,rgba(15,23,42,0),rgba(2,6,23,0.9))]" />
+      <motion.div className="site-background fixed -inset-x-24 -bottom-56 -top-56 pointer-events-none opacity-90" style={{ y: bgY }}>
+        <div className="aurora-field absolute inset-0" />
         <div className="stars" />
         <div className="depth-object cube left-[4%] top-[22%]" />
         <div className="depth-object prism right-[8%] top-[48%]" />
@@ -168,10 +171,17 @@ function App() {
                 </motion.div>
               </div>
               <div className="mt-10 space-y-3">
-                {boardItems.map((item, index) => (
-                  <motion.div key={item} className="board-row flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] p-3" style={{ marginLeft: index * 14 }} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.28 + index * 0.1 }} whileHover={{ x: -8, scale: 1.03 }}>
-                    <span className="grid h-7 w-7 place-items-center rounded-full bg-sky-300/15 text-sky-100"><CheckCircle2 size={15} /></span>
-                    <span>{item}</span>
+                {boardCharacters.map((character, index) => (
+                  <motion.div key={character.name} className={`board-character ${character.accent}`} style={{ marginLeft: index * 14 }} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.28 + index * 0.1 }} whileHover={{ x: -8, scale: 1.03, rotateY: -6 }}>
+                    <span className="toon-person" aria-hidden="true">
+                      <span className="toon-head" />
+                      <span className="toon-body" />
+                      <span className="toon-shadow" />
+                    </span>
+                    <span>
+                      <strong>{character.name}</strong>
+                      <small>{character.mood}</small>
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -266,15 +276,22 @@ function App() {
           <p className="text-sm uppercase tracking-[0.45em] text-sky-200/70">Now / Location / Contact</p>
           <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_0.8fr]">
             <h2 className="text-4xl font-black tracking-[-0.05em] text-white sm:text-6xl">
-              我在北京冒险湾，
-              <span className="block text-sky-100">也在把路写下来。</span>
+              保持记录，
+              <span className="block text-sky-100">持续把想法变成作品。</span>
             </h2>
             <div className="space-y-5 text-slate-300">
-              <p>当前所在地：北京。</p>
               <p>正在做：维护“莱德队长的冒险湾”，把阅读、云笔记、代码和自我觉察连接起来。</p>
-              <a className="inline-flex items-center gap-2 rounded-full bg-sky-200 px-5 py-3 font-bold text-slate-950 transition hover:-translate-y-1 hover:bg-white" href="http://8.138.150.215/" target="_blank" rel="noreferrer">
-                访问我的云笔记 <Cloud size={18} />
-              </a>
+              <div className="contact-links">
+                <a className="contact-link primary" href="http://8.138.150.215/" target="_blank" rel="noreferrer">
+                  访问我的云笔记 <Cloud size={18} />
+                </a>
+                <a className="contact-link" href="https://www.zhihu.com/people/joe-tao-99" target="_blank" rel="noreferrer">
+                  知乎主页 <ExternalLink size={17} />
+                </a>
+                <a className="contact-link" href="https://space.bilibili.com/412405219?spm_id_from=333.1007.0.0" target="_blank" rel="noreferrer">
+                  B站主页 <ExternalLink size={17} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
