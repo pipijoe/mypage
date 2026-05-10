@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="557" height="800" viewBox="0 0 557 800">
+  <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f4fa4"/><stop offset=".48" stop-color="#07a6d8"/><stop offset="1" stop-color="#114587"/></linearGradient><filter id="sh"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-opacity=".25"/></filter></defs>
+  <rect width="557" height="800" fill="#fff"/><rect width="557" height="517" fill="url(#b)"/>
+  <g opacity=".24" fill="#083b78"><path d="M-20 116C87 64 151 149 263 103s181-58 314-9v58c-125-38-213-26-320 22S73 140-20 181Z"/><path d="M-9 282c111-49 175 34 285-12s184-54 293-2v70c-127-44-217-20-325 22S80 333-9 375Z"/><path d="M0 432c97-38 162 23 267-16s180-36 290 6v95H0Z"/></g>
+  <text x="278" y="151" text-anchor="middle" fill="#fff" font-size="28" font-family="serif" letter-spacing="6">嫌われる勇気</text>
+  <text x="278" y="270" text-anchor="middle" fill="#fff" font-size="64" font-family="serif" font-weight="700">被讨厌的勇气</text>
+  <text x="278" y="352" text-anchor="middle" fill="#f8e84f" font-size="25" font-family="sans-serif">“自我启发之父”阿德勒的哲学课</text>
+  <text x="278" y="448" text-anchor="middle" fill="#dfefff" font-size="17" font-family="sans-serif">[日] 岸见一郎 古贺史健 著</text>
+  <text x="62" y="600" fill="#de1f2f" font-size="28" font-weight="800" font-family="sans-serif">“勇气两部曲”</text>
+  <text x="198" y="604" fill="#333" font-size="26" font-family="serif">日韩销量百万，简繁中文版广受好评！</text>
+  <text x="198" y="681" fill="#111" font-size="31" font-weight="800" font-family="serif">所谓的自由，就是被人讨厌</text>
+  <text x="278" y="747" text-anchor="middle" fill="#111" font-size="18" font-family="sans-serif">机械工业出版社</text>
+</svg>

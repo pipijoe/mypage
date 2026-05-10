@@ -18,14 +18,59 @@ body {
 
 .stars {
   position: absolute;
-  inset: 0;
+  inset: -12%;
   background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.5px),
-    radial-gradient(circle, rgba(125, 211, 252, 0.55) 0 1px, transparent 1.5px);
-  background-position: 0 0, 40px 60px;
-  background-size: 140px 140px, 220px 220px;
+    radial-gradient(circle, rgba(255, 255, 255, 0.82) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(125, 211, 252, 0.56) 0 1px, transparent 1.5px),
+    linear-gradient(120deg, transparent 0 18%, rgb(125 211 252 / 0.08) 18.2% 18.6%, transparent 18.8% 100%);
+  background-position: 0 0, 40px 60px, center;
+  background-size: 140px 140px, 220px 220px, 360px 360px;
   mask-image: linear-gradient(to bottom, black, transparent 85%);
   animation: drift 26s linear infinite;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #7dd3fc, #ffffff, #fde68a);
+  box-shadow: 0 0 24px rgb(56 189 248 / 0.55);
+  transform-origin: 0 50%;
+}
+
+.depth-object {
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 28px 42px rgb(14 165 233 / 0.16));
+  animation: float3d 8s ease-in-out infinite alternate;
+}
+
+.depth-object.cube {
+  border: 1px solid rgb(125 211 252 / 0.25);
+  border-radius: 1.4rem;
+  background: linear-gradient(135deg, rgb(255 255 255 / 0.16), rgb(56 189 248 / 0.04));
+  transform: rotateX(58deg) rotateZ(42deg);
+}
+
+.depth-object.prism {
+  width: 0;
+  height: 0;
+  border-right: 4.7rem solid transparent;
+  border-bottom: 8.2rem solid rgb(250 204 21 / 0.13);
+  border-left: 4.7rem solid transparent;
+  animation-delay: -2s;
+}
+
+.depth-object.ring {
+  border: 1.2rem solid rgb(255 255 255 / 0.08);
+  border-top-color: rgb(125 211 252 / 0.28);
+  border-radius: 999px;
+  animation-delay: -4s;
 }
 
 .parallax-layer {
@@ -36,15 +81,15 @@ body {
 }
 
 .parallax-layer.far {
-  transform: translate3d(0, calc(var(--far-y) * 1px), 0) scale(0.96);
+  scale: 0.96;
 }
 
 .parallax-layer.mid {
-  transform: translate3d(0, calc(var(--mid-y) * 1px), 0) scale(0.985);
+  scale: 0.985;
 }
 
 .parallax-layer.near {
-  transform: translate3d(0, calc(var(--near-y) * 1px), 0) scale(1.03);
+  scale: 1.03;
 }
 
 .paw-badge {
@@ -62,9 +107,81 @@ body {
 }
 
 .hero-card {
-  transform: perspective(1100px) translate3d(0, calc(var(--hero-depth) * 1px), 0) rotateX(calc(var(--scroll-progress) * 11deg)) scale(var(--hero-scale));
   transform-origin: center top;
+  transform-style: preserve-3d;
   will-change: transform;
+}
+
+.site-mark {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid rgb(125 211 252 / 0.35);
+  border-radius: 0.8rem;
+  background: linear-gradient(135deg, rgb(125 211 252 / 0.95), rgb(255 255 255 / 0.88) 52%, rgb(250 204 21 / 0.82));
+  color: rgb(2 6 23);
+  font-weight: 1000;
+  box-shadow: 0 14px 35px rgb(14 165 233 / 0.24);
+}
+
+.adventure-orbit {
+  transform: translateZ(40px);
+}
+
+.board-row {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 18px 34px rgb(2 6 23 / 0.16);
+}
+
+.bridge-section {
+  perspective: 1200px;
+}
+
+.bridge-panel {
+  border: 1px solid rgb(255 255 255 / 0.11);
+  border-radius: 2.2rem;
+  background:
+    radial-gradient(circle at 12% 15%, rgb(125 211 252 / 0.22), transparent 30%),
+    linear-gradient(135deg, rgb(15 23 42 / 0.78), rgb(2 6 23 / 0.56));
+  box-shadow: 0 30px 90px rgb(2 6 23 / 0.45);
+  backdrop-filter: blur(22px);
+}
+
+.checkpoint-card {
+  min-height: 9rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 1.6rem;
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.035));
+  padding: 1.2rem;
+  transform-style: preserve-3d;
+  transition: transform 400ms ease, border-color 400ms ease, background 400ms ease;
+}
+
+.checkpoint-card:hover {
+  border-color: rgb(125 211 252 / 0.4);
+  background: linear-gradient(145deg, rgb(14 165 233 / 0.16), rgb(255 255 255 / 0.05));
+  transform: translateY(-0.4rem) rotateX(5deg);
+}
+
+.checkpoint-card span {
+  color: rgb(125 211 252);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.24em;
+}
+
+.checkpoint-card p {
+  margin-top: 1.2rem;
+  color: rgb(148 163 184);
+  font-size: 0.9rem;
+}
+
+.checkpoint-card strong {
+  display: block;
+  margin-top: 0.55rem;
+  color: white;
+  font-size: 1.25rem;
+  line-height: 1.35;
 }
 
 .content-section {
@@ -253,6 +370,11 @@ body {
   to { transform: translate3d(-140px, 140px, 0); }
 }
 
+@keyframes float3d {
+  from { transform: translate3d(0, 0, 0) rotateX(58deg) rotateZ(42deg); }
+  to { transform: translate3d(0, -1.4rem, 3rem) rotateX(48deg) rotateZ(58deg); }
+}
+
 @media (min-width: 768px) {
   .horizontal-depth {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -281,7 +403,8 @@ body {
   .hero-card,
   .parallax-layer,
   .thought-card,
-  .work-card {
+  .work-card,
+  .depth-object {
     transform: none !important;
   }
 }
