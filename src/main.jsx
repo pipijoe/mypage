@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { createRoot } from 'react-dom/client';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import {
@@ -14,23 +14,68 @@ import {
   Orbit,
   Rocket,
   Sparkles,
-  Waves,
+  MessageSquare, Mail
 } from 'lucide-react';
 import './styles.css';
 
 const tags = ['羽毛球L1', '奶爸', 'vibe coding', '了解自己', 'INTJ', '对抗内耗', '了解心理学'];
-
 const thoughts = [
-  '人生前段时高考和工作，后段的主题就是把高考时的精神拿来搏自由。',
-  '一段工作经历让我明白，一个人如果既忙前又忙后，多半一个都忙不好。如有必要，找合适的人合作。',
-  '建立信任是起步的基石。',
+  // 旧感悟
+  {
+    content: '我热爱消费者市场，讨厌企业意志。我们推出了一种产品，告诉每个人，大家自己决定要不要买，这很简单。但是，企业市场不是这样，使用产品的人自己做不了主，而做主的人不使用产品。',
+    source: '乔布斯',
+    category: '市场观'
+  },
+  {
+    content: '一段工作经历让我明白，一个人如果既忙前又忙后，多半一个都忙不好。如有必要，找合适的人合作。',
+    source: '自我观察',
+    category: '协作'
+  },
+  {
+    content: '建立信任是起步的基石.',
+    source: '原则',
+    category: '信任'
+  },
+
+  // 新增感悟 1: 种树与时间
+  {
+    content: [
+      "最明智的举措不是追逐潮流，而是种下一棵树，让时间来发挥作用。",
+      "树木不会在明天带来回报，它们十年后才会产生回报。",
+      "它们默默地生长，使周围的一切都变得更好：树荫、价值、美感、寿命。"
+    ],
+    source: '设计的复利',
+    category: '长期主义'
+  },
+
+  // 新增感悟 2: 工程师与人性
+  {
+    content: [
+      "工程师不仅需要具备技术技能，还要具备软技能，也就是人际交往的技能。",
+      "如果你不理解人类社会的复杂性，就无法理解公司或团队的工作方式，",
+      "最终影响到自己的产出和扩大影响力。"
+    ],
+    source: '被低估的软技能',
+    category: '职业观'
+  },
+
+  // 新增感悟 3: AI 与系统
+  {
+    content: [
+      "AI 出现以后，程序员的发展方向彻底变了。",
+      "你必须专注于理解系统而非理解语法，你的技能必须从编写代码转移到架构、安全、人机协作等方面。",
+      "未来属于那些能够构想、开发和维护复杂系统的人。"
+    ],
+    source: '莱德队长',
+    category: 'AI 时代'
+  },
 ];
 
 const books = [
   {
     title: '被讨厌的勇气',
     note: '借阿德勒心理学练习课题分离，把他人的评价还给他人，把自己的路走稳。',
-    image: '/books/courage.svg',
+    image: '/books/courage.png',
     source: '心理学',
   },
   {
@@ -45,6 +90,25 @@ const books = [
     image: '/books/silicon-fire.svg',
     source: '科技史',
   },
+  // --- 新增书籍 ---
+  {
+    title: '希腊三部曲：追逐阳光之道',
+    note: '领略自然主义的诗意与生命的野性，在希腊小岛的阳光下感受万物生长的律动。',
+    image: '/books/greece.png', // 请确保项目中存在该图片路径
+    source: '自然文学',
+  },
+  {
+    title: '看不见的孩子',
+    note: '一部关于纽约无家可归少女的真实史诗，揭示了社会福利体系下被遗忘的生存挣扎。',
+    image: '/books/invisible.png', // 请确保项目中存在该图片路径
+    source: '社会纪实',
+  },
+  {
+    title: '今日简史',
+    note: '探讨数据主义、人工智能对人类社会的冲击，以及在动荡时代中如何保持心智稳定。',
+    image: '/books/today.png', // 请确保项目中存在该图片路径
+    source: '未来学',
+  },
 ];
 
 const works = [
@@ -57,9 +121,25 @@ const works = [
 ];
 
 const statusCards = [
-  { icon: MapPin, label: '当前所在地', value: '北京', hint: '在工作、出差、阅读和自我观察之间切换坐标。' },
-  { icon: Rocket, label: '我在做什么', value: '建设个人知识与作品基地', hint: '用 vibe coding 把想法变成页面、工具和可访问的作品。' },
-  { icon: Waves, label: '近期课题', value: '降低负反馈的情绪噪音', hint: '保留反馈里的信息，减少评价对自我状态的消耗。' },
+  {
+    icon: MapPin,
+    label: '当前所在地',
+    value: '北京',
+    hint: '在工作、出差、阅读和自我观察之间切换坐标。'
+  },
+  {
+    icon: Rocket,
+    label: '我在做什么',
+    value: '建设个人知识与作品基地',
+    hint: '用 vibe coding 把想法变成页面、工具和可访问的作品。'
+  },
+  // 修改了这里：从“降低负反馈”改为更积极的“构建系统”
+  {
+    icon: Brain,
+    label: '近期课题',
+    value: '构建长期主义系统',
+    hint: '种一棵树，理解复杂性，从写代码到做架构。'
+  },
 ];
 
 const boardCharacters = [
@@ -84,6 +164,23 @@ function App() {
   const nearY = useTransform(smoothProgress, [0, 1], [0, -420]);
   const bgY = useTransform(smoothProgress, [0, 1], [-120, 120]);
   const progressScale = useTransform(smoothProgress, [0, 1], [0.04, 1]);
+
+  const [messages, setMessages] = useState([
+    { id: 1, name: '匿名访客', content: '很喜欢你的长期主义理念，一起种树！', time: '2024-05-20' }
+  ]);
+  const [formData, setFormData] = useState({ name: '', content: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitMessage = (e) => {
+    e.preventDefault();
+    if (!formData.content.trim()) return;
+
+    setIsSubmitting(true);
+  };
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#05070d] text-slate-100 selection:bg-sky-300 selection:text-slate-950">
@@ -225,21 +322,54 @@ function App() {
           </div>
         </div>
       </section>
-
       <section id="想法" className="content-section relative z-10">
-        <SectionHeader kicker="Signals" title="最近的感悟" icon={Brain} />
-        <div className="horizontal-depth">
+        <SectionHeader kicker="Signals" title="想法" icon={Brain} />
+
+        {/*
+          关键修复：移除了父级的 overflow-hidden，
+          并增加 py-6 防止 hover 时阴影被截断
+        */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 py-6">
+
           {thoughts.map((thought, index) => (
-            <article key={thought} className="thought-card" style={{ '--i': index }}>
-              <span>0{index + 1}</span>
-              <p>{thought}</p>
-            </article>
+              <article
+                  key={index}
+                  className="deep-thought-card group relative" // 添加 relative 确保 z-index 生效
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                {/* 装饰性渐变边框 */}
+                <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-sky-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100 blur-sm"></div>
+
+                {/* 卡片主体 */}
+                <div className="relative z-10 rounded-2xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-sky-300/30">
+
+                  {/* 引用符号 */}
+                  <div className="mb-4 text-2xl text-sky-300/30">“</div>
+
+                  {/* 内容 */}
+                  <div className="space-y-2 text-sm text-slate-300 leading-relaxed">
+                    {Array.isArray(thought.content) ? (
+                        thought.content.map((line, i) => <p key={i} className="mb-1 last:mb-0">{line}</p>)
+                    ) : (
+                        <p>{thought.content}</p>
+                    )}
+                  </div>
+
+                  {/* --- 底部元信息 --- */}
+                  <div className="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-xs text-slate-400">
+                    <span className="px-3 py-1 rounded-full bg-white/5 backdrop-blur-sm">{thought.source}</span>
+                    <span className="text-sky-300 font-medium">{thought.category}</span>
+                  </div>
+                </div>
+              </article>
           ))}
         </div>
       </section>
 
       <section id="书单" className="content-section relative z-10">
-        <SectionHeader kicker="Books" title="我正在读的书" icon={BookOpen} />
+        <SectionHeader kicker="Books" title="近期书单" icon={BookOpen} />
         <div className="grid gap-5 md:grid-cols-3">
           {books.map((book) => (
             <article key={book.title} className="book-card">
@@ -255,7 +385,7 @@ function App() {
       </section>
 
       <section id="作品" className="content-section relative z-10">
-        <SectionHeader kicker="Works" title="我的作品介绍" icon={Rocket} />
+        <SectionHeader kicker="Works" title="作品" icon={Rocket} />
         <div className="work-stage">
           {works.map((work, index) => (
             <article key={work.name} className="work-card" style={{ '--depth': index }}>
@@ -290,8 +420,74 @@ function App() {
                 <a className="contact-link" href="https://space.bilibili.com/412405219?spm_id_from=333.1007.0.0" target="_blank" rel="noreferrer">
                   B站主页 <ExternalLink size={17} />
                 </a>
+                <a className="contact-link" >
+                  <Mail size={17} /> cutesimba@163.com
+                </a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      {/* --- 访客留言板块 --- */}
+      <section id="留言" className="content-section relative z-10">
+        <SectionHeader kicker="Guestbook" title="留下足迹" icon={MessageSquare} />
+
+        <div className="grid gap-10 lg:grid-cols-5">
+          {/* 左侧：留言表单 */}
+          <div className="lg:col-span-2">
+            <form onSubmit={handleSubmitMessage} className="space-y-4 rounded-2xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-sm">
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-400">称呼</label>
+                <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="你的名字（选填）"
+                    className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-2 text-sm text-slate-200 outline-none transition-all focus:border-sky-300/50 focus:ring-1 focus:ring-sky-300/20"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-400">想说的话</label>
+                <textarea
+                    name="content"
+                    value={formData.content}
+                    onChange={handleInputChange}
+                    rows="4"
+                    placeholder="分享你的感悟、建议，或者只是打个招呼..."
+                    className="w-full resize-none rounded-lg border border-white/10 bg-black/30 px-4 py-2 text-sm text-slate-200 outline-none transition-all focus:border-sky-300/50 focus:ring-1 focus:ring-sky-300/20"
+                ></textarea>
+              </div>
+              <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-sky-300 px-4 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-sky-200 disabled:opacity-70"
+              >
+                {isSubmitting ? '发送中...' : '发射信号'}
+              </button>
+            </form>
+          </div>
+
+          {/* 右侧：留言列表 */}
+          <div className="space-y-4 lg:col-span-3">
+            {messages.length === 0 && (
+                <p className="text-center text-sm text-slate-500 py-10">还没有人留下足迹，成为第一个吧！</p>
+            )}
+
+            {messages.map((msg) => (
+                <motion.div
+                    key={msg.id}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="group rounded-xl border border-white/5 bg-slate-900/40 p-4 transition-all hover:border-sky-300/20"
+                >
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-sm font-medium text-sky-300">{msg.name}</span>
+                    <span className="text-xs text-slate-500">{msg.time}</span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-slate-300">{msg.content}</p>
+                </motion.div>
+            ))}
           </div>
         </div>
       </section>

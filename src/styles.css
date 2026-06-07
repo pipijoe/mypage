@@ -618,3 +618,43 @@ body {
   from { background-position: 0% 0%, 100% 20%, 40% 80%, center; }
   to { background-position: 18% 12%, 78% 34%, 55% 68%, center; }
 }
+
+/* 修复 Hover 遮挡问题 */
+/* 确保卡片在悬停放大时不会被父容器切割 */
+.content-section {
+  position: relative;
+  z-index: 10;
+  /* 移除可能存在的 overflow-hidden */
+}
+
+/* 深度感悟卡片悬停特效 */
+.deep-thought-card {
+  position: relative;
+  /* 关键：允许阴影溢出 */
+  overflow: visible;
+}
+
+.deep-thought-card .rounded-2xl {
+  transition: all 0.3s ease;
+  /* 默认阴影 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* 悬停时上移并增加阴影 */
+.deep-thought-card:hover .rounded-2xl {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+/* 引用符号的特殊样式 */
+.deep-thought-card .text-2xl {
+  font-family: 'Georgia', serif;
+  opacity: 0.2;
+  transition: opacity 0.3s;
+}
+
+.deep-thought-card:hover .text-2xl {
+  opacity: 0.5;
+  color: theme('colors.sky.200');
+}
